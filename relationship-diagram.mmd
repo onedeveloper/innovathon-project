@@ -1,0 +1,18 @@
+graph TD
+    subgraph "User Machine (Macbook Pro)"
+        User --> CLI["MCP Client (FastAgent/FastMCP)"];
+
+        subgraph "MCP System"
+            CLI -- MCP Request --> Gateway["MCP Model Gateway (FastMCP)"];
+            Gateway -- MCP Discovery/Tool Call --> Server1["MCP Server 1: Date/Time Agent (FastMCP)"];
+            Gateway -- MCP Discovery/Tool Call --> Server2["MCP Server 2: SQLite Agent (FastMCP)"];
+        end
+
+        subgraph "External Services (Local)"
+            Gateway -- LLM API Call --> Ollama["Ollama Service"];
+            Server2 -- DB Operations --> DB[(SQLite Database File)];
+        end
+    end
+
+    style DB fill:#f9f,stroke:#333,stroke-width:2px
+    style Ollama fill:#ccf,stroke:#333,stroke-width:2px

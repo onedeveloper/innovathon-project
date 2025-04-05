@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant User
+    participant Client [MCP Client]
+    participant Gateway [MCP Gateway]
+    participant Ollama
+    participant ServerDT [Date/Time Server]
+    participant ServerSQL [SQLite Server]
+    participant DB [SQLite DB]
+
+    User ->>+ Client: Enter prompt (e.g., "How many days until Christmas?")
+    Client ->>+ Gateway: Send MCP Request (prompt)
+    Note over Gateway: Discover tools from Servers (if not cached)
+    Gateway ->> ServerDT: Get Tool Definitions
+    ServerDT -->> Gateway: Date/Time Tools Info
+    Gateway ->> ServerSQL: Get Tool Definitions
+    ServerSQL -->> Gateway: SQLite Tools Info
+    Note over Gateway: Format prompt for Ollama with tool descriptions
+    Gateway ->>+ Ollama: Send formatted prompt + tools
+    Ollama -->>- Gateway: Request to call `calculate_date_difference` (start=today, end=Dec 25, unit=days)
+    Note over Gateway: Route tool call to correct server
+    Gateway ->>+ ServerDT: Execute `calculate_date_difference`
+    Note over ServerDT: Calculate using datetime (using current date: 2025-04-05)
+    ServerDT -->>- Gateway: Return result (e.g., "264 days")
+    Note over Gateway: (Optional) Send tool result back to Ollama for final phrasing
+    Gateway ->>+ Ollama: Provide tool execution result
+    Ollama -->>- Gateway: Generate final response (e.g., "There are 264 days until Christmas.")
+    Gateway -->>- Client: Return final response
+    Client -->>- User: Display response
