@@ -6,7 +6,7 @@ from typing import Optional, List, Dict, Any
 
 import uvicorn
 from dotenv import load_dotenv
-from modelcontextprotocol import FastMCP, ToolInput, tool, prompt, resource
+from mcp.server.fastmcp import FastMCP, tool, prompt, resource # Corrected import
 from pydantic import BaseModel, Field
 
 # --- Project Setup ---

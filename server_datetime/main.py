@@ -1,10 +1,10 @@
 import logging
 import os
 from datetime import datetime, timedelta, date
-from typing import Optional
-
+from typing import Optional, Dict, Any # Added Dict, Any for error details type hint
 import uvicorn
 from dotenv import load_dotenv
+from mcp.server.fastmcp import FastMCP, tool # Corrected import
 from modelcontextprotocol import FastMCP, ToolInput, tool
 from pydantic import BaseModel, Field
 from enum import Enum

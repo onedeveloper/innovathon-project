@@ -8,7 +8,8 @@ from typing import Optional, Dict, Any, List
 import httpx
 import uvicorn
 from dotenv import load_dotenv
-from modelcontextprotocol import FastMCP # Assuming MCPClient and ToolDefinition are part of the SDK or handled differently
+# Removed incorrect import: from modelcontextprotocol import FastMCP
+# Assuming necessary classes like FastMCP are available via the 'mcp' package implicitly or handled by framework decorators
 from pydantic import BaseModel
 
 # --- Project Setup ---
