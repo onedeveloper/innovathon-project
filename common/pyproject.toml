@@ -1,0 +1,17 @@
+[project]
+name = "mcp_common_utils"
+version = "0.1.0"
+description = "Common utilities for the MCP Date/Time and SQLite Agent Application"
+authors = [
+    { name = "Your Name", email = "you@example.com" }, # TODO: Update author details
+]
+requires-python = ">=3.8" # Specify a suitable minimum Python version
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+# Optional: If common utilities have their own dependencies, list them here
+# dependencies = [
+#     "some-dependency",
+# ]
