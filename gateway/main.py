@@ -201,7 +201,7 @@ async def handle_client_request(request: ClientRequest) -> Dict[str, Any]:
     # NOTE: Adjust this based on the specific Ollama model and its tool/function calling support.
     messages = [{"role": "user", "content": user_prompt}]
     ollama_request_payload = {
-        "model": "llama3", # TODO: Make model configurable via .env
+        "model": "gemma3:27b", # TODO: Make model configurable via .env
         "messages": messages,
         "stream": False, # Keep it simple for now
         # --- Tool specification (adjust format as needed) ---
