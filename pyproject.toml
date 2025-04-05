@@ -18,3 +18,4 @@ mcp-common-utils = { path = "common", editable = true }
 [tool.uv.scripts]
 start-datetime = "python server_datetime/main.py"
 start-sqlite = "python server_sqlite/main.py"
+start-gateway = "python gateway/main.py"
