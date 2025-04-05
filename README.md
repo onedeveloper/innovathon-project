@@ -66,23 +66,30 @@ You need to run the Ollama service and the four Python components (Date/Time Ser
 
 3.  **Navigate to the project root directory (`innovathon-project`) in each terminal.**
 
-4.  **Run each component using `uv run`:**
+4.  **Run each component using `python`:**
+
+    *(Note: We use direct `python` commands here instead of `uv run <script_alias>` because `uv sync` in version 0.6.12 has a parsing issue with the `[tool.uv.scripts]` section in `pyproject.toml`. Running `python` directly still uses the correct interpreter from the `.venv` environment if you activated it, or you can use `uv run python <path_to_script>` which also works.)*
+
     *   Terminal 1: **Date/Time Server**
         ```bash
-        uv run start-datetime
+        python server_datetime/main.py
+        # Or: uv run python server_datetime/main.py
         ```
     *   Terminal 2: **SQLite Server**
         ```bash
-        uv run start-sqlite
+        python server_sqlite/main.py
+        # Or: uv run python server_sqlite/main.py
         ```
         *(Note: This will create the `data/mydatabase.db` file if it doesn't exist)*
     *   Terminal 3: **Gateway**
         ```bash
-        uv run start-gateway
+        python gateway/main.py
+        # Or: uv run python gateway/main.py
         ```
     *   Terminal 4: **Client**
         ```bash
-        uv run start-client
+        python client/cli.py
+        # Or: uv run python client/cli.py
         ```
 
 5.  **Interact:** The client will start in Terminal 4. Type your prompts and press Enter. Observe the logs in all terminals to see the interactions. Type `quit` or `exit` in the client terminal to stop it.
@@ -93,4 +100,4 @@ You need to run the Ollama service and the four Python components (Date/Time Ser
 
 *   **Dependencies:** Add new dependencies using `uv add <package_name>`.
 *   **Shared Code:** Common utilities are placed in the `common/` directory, which is installed as an editable package (`mcp_common_utils`). Changes in `common/` should be reflected when components are restarted.
-*   **Scripts:** Add or modify run scripts in the `[tool.uv.scripts]` section of `pyproject.toml`.
+*   **Scripts:** The `[tool.uv.scripts]` section in `pyproject.toml` is currently commented out due to a parsing issue with `uv sync` in `uv` version 0.6.12. Use direct `python <path_to_script>` commands or `uv run python <path_to_script>` instead of aliases.
