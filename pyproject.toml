@@ -19,3 +19,4 @@ mcp-common-utils = { path = "common", editable = true }
 start-datetime = "python server_datetime/main.py"
 start-sqlite = "python server_sqlite/main.py"
 start-gateway = "python gateway/main.py"
+start-client = "python client/cli.py"
